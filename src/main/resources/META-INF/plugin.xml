@@ -1,0 +1,36 @@
+<idea-plugin>
+    <id>com.explainer.aicodeexplainer</id>
+    <name>AI Code Explainer</name>
+    <vendor>Milan Todorovikj</vendor>
+    <description>Select code, right-click, and get an AI-powered explanation in a side panel.</description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow
+                id="AI Explainer"
+                secondary="false"
+                anchor="right"
+                factoryClass="com.explainer.aicodeexplainer.toolwindow.ExplainerToolWindowFactory"
+                icon="AllIcons.Actions.IntentionBulb"/>
+
+        <applicationConfigurable
+                parentId="tools"
+                instance="com.explainer.aicodeexplainer.settings.AppSettingsConfigurable"
+                id="com.example.aicodeexplainer.settings"
+                displayName="AI Code Explainer"/>
+
+    </extensions>
+
+    <actions>
+        <action
+                id="com.example.aicodeexplainer.ExplainCodeAction"
+                class="com.explainer.aicodeexplainer.actions.ExplainCodeAction"
+                text="Explain with AI"
+                description="Send selected code to Gemini for explanation">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt E"/>
+        </action>
+    </actions>
+
+</idea-plugin>
